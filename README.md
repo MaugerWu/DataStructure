@@ -50,9 +50,11 @@
 
 ## 三、线性表（Linear List）
 
-+ **线性表：** 零个或多个数据元素的有限序列。在较复杂的线性表中，一个数据元素可以由若干个数据项组成。（如：班级同学点名册）
++ **线性表：** 
 
-+ 线性表一般包含以下几种操作：
+  &emsp;&emsp;零个或多个数据元素的有限序列。在较复杂的线性表中，一个数据元素可以由若干个数据项组成。（如：班级同学点名册）
+
++ 线性表的操作：
 
   1. InitList(*L) // 初始化操作，建立一个空的线性表 L 
   2. DestroyList(*L) // 线性表存在了，消耗一个线性表
@@ -77,7 +79,90 @@
   - 无论链表是否为空，头指针均不为空。
   - 头结点不一定是链表的必须元素。
 
++ 单链表的操作：
 
+  1. 头插法
+
+  &emsp;&emsp;始终让新结点都插在第一的位置，如图：
+
+
+
+  ```java
+  public void headInsert(T item) {
+      Node old = first;
+      first = new Node();
+      first.item = item;
+      first.next = old;
+      count++;
+  }
+  ```
+
+  2. 尾插法
+
+  &emsp;&emsp;把每次新结点都插在终端结点的后面，如图：
+
+
+
+  ```java
+  public void tailInsert(T item) {
+      Node old = last;
+      last = new Node();
+      last.item = item;
+      last.next = null;
+      if (isEmpty()) {
+          first = last;
+      } else {
+          old.next = last;
+      }
+      count++;
+  }
+  ```
+
+  &emsp;&emsp;节点的插入和删除，要点是先断后连，关键就是不要断链了，以插入为例（把s插入 p 和 q 之间），先断意思是先把 p->q 断了，变成 s->q，后连，最后再把 p 和 s连接起来。
+
+  3. 插入节点
+
+  &emsp;&emsp;待插入节点为s，一般采用后插法，即先找到插入位置节点的前驱节点，然后插入，时间复杂度O(n)。如图：
+
+
+
+  ```java
+  p=getNodeByIndex(i-1);
+  s.next = p.next;
+  p.next = s;
+  ```
+
+  &emsp;&emsp;还有一种方法是，直接插入到位置的后面（前插法），然后交换两个节点的值，插入的节点到了指定位置，时间复杂度 O(1)：
+
+  ```java
+  s.next = p.next;
+  p.next = s;
+  temp = p.item;    // 交换内容
+  p.item = s.item;
+  s.item = temp;
+  ```
+
+  4. 删除节点
+
+  &emsp;&emsp;待删除节点为 q，也是先找到前驱节点，修改指针域即可，时间复杂度 O(n)。如图：
+
+
+
+  ```java
+  P = getNodeByIndex(i-1);
+  q = p.next;
+  p.next = q.next;
+  q = null;
+  ```
+
+  &emsp;&emsp;删除节点也能直接删除其后继节点，然后将后继节点的内容赋给自己即可，时间复杂度为 O(1)：
+
+  ```java
+  q = p.next;
+  p.item = p.next.item;
+  p.next = q.next;
+  q = null;
+  ```
 
 + 线性表与单列表的区别：
 
