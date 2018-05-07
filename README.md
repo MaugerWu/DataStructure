@@ -85,7 +85,7 @@
 
   &emsp;&emsp;始终让新结点都插在第一的位置，如图：
 
-
+  ![头插法](https://github.com/MaugerWu/DataStructure_Algorithm/blob/master/images/1.png)
 
   ```java
   public void headInsert(T item) {
@@ -101,7 +101,7 @@
 
   &emsp;&emsp;把每次新结点都插在终端结点的后面，如图：
 
-
+  ![尾插法](https://github.com/MaugerWu/DataStructure_Algorithm/blob/master/images/2.png)
 
   ```java
   public void tailInsert(T item) {
@@ -124,7 +124,7 @@
 
   &emsp;&emsp;待插入节点为s，一般采用后插法，即先找到插入位置节点的前驱节点，然后插入，时间复杂度O(n)。如图：
 
-
+  ![插入结点](https://github.com/MaugerWu/DataStructure_Algorithm/blob/master/images/3.png)
 
   ```java
   p=getNodeByIndex(i-1);
@@ -146,7 +146,7 @@
 
   &emsp;&emsp;待删除节点为 q，也是先找到前驱节点，修改指针域即可，时间复杂度 O(n)。如图：
 
-
+  ![删除结点](https://github.com/MaugerWu/DataStructure_Algorithm/blob/master/images/4.png)
 
   ```java
   P = getNodeByIndex(i-1);
