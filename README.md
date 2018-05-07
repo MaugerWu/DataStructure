@@ -51,3 +51,19 @@
 ## 三、线性表（Linear List）
 
 + **线性表：** 零个或多个数据元素的有限序列。在较复杂的线性表中，一个数据元素可以由若干个数据项组成。（如：班级同学点名册）
+
++ 线性表一般包含以下几种操作：
+
+  1. InitList(*L) // 初始化操作，建立一个空的线性表 L 
+  2. DestroyList(*L) // 线性表存在了，消耗一个线性表
+  3. ClearList（*L） // 将线性表清空
+  4. ListEmpty（L） // 若线性表为空，返回 true；否则返回 false
+  5. ListLength（L） // 返回线性表的长度
+  6. GetElem（*L,i,e） // 将线性表 L 中的第 i 个位置上的元素值返回给 e    
+  7. PriorElem（*L,cur_e,&pre_e） // 如果cur_e是线性表中的元素，而且不是第一个，那么返回该元素前一个元素的值
+  8. NextElem（*L,cur_e,&next_e） // 如果cur_e是线性表中的元素，而且不是最后一个，就返回它下一个元素的值
+  9. Listinsert(&L,i,e) // 如果线性表 L 存在了，而且 i 符合条件，则在 i 位置插入一个元素
+  10. ListDelete（&L,i） // 删除 i 位置上的元素
+  11. ListDelete_data(*L,e,order) // 删除指定的元素 e，order 决定是删除一个，还是全部
+  12. Connect_two_List(L_a,L_b,& L_c) // 连接两个线性表，除去重复的内容    
+  13. print(L) // 打印线性表 L
