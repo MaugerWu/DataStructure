@@ -227,8 +227,26 @@
 
 &emsp;&emsp;递归：斐波拉契数列的实现（Fibonacci）。
 
-&emsp;&emsp;后缀（逆波兰 Reverse Polish Notation）表示法 — 四则运算表达式求值。比如**中缀表达式：** `9 + （3 - 1） * 3 + 10 / 2`，**后缀表达式为：** `9 3 1 - 3 * + 10 2 / +`。
+&emsp;&emsp;后缀（逆波兰 Reverse Polish Notation）表示法 — 四则运算表达式求值。
+
+&emsp;&emsp;比如**中缀表达式：** `9 + （3 - 1） * 3 + 10 / 2`，**后缀表达式为：** `9 3 1 - 3 * + 10 2 / +`。
 
 + **递归：**
 
 &emsp;&emsp;把一个直接调用自己或通过一系列的调用语句间接地调用自己的函数，称为递归函数。
+
++ **队列：**
+
+&emsp;&emsp;队列（Queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。队列是一种先进先出（First In First Out）的线性表，简称： **FIFO**。允许插入的一端叫做队尾，允许删除的一端称为队头。
+
++ **循环队列：**
+
+&emsp;&emsp;将队列的这种头尾相接的顺序存储结构称为循环队列。
+
++ **队列判空/满：**
+
+&emsp;&emsp;当 front = rear 时，队列为空；
+&emsp;&emsp;当 （rear + 1） % QueueSize == front 时，队列为满；
+&emsp;&emsp;计算队列长度：（rear - front + QueueSize）% QueueSize
+
+
