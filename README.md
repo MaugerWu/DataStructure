@@ -579,5 +579,22 @@
 
 ## 八、查找（Search）
 
-+ 顺序查找 
++ 顺序表查找
+
+  1. 顺序查找又称线性查找。
+
+  ``` java
+  int Sequential_Search(int[] a, int n, int key)
+  {
+    int i;
+    for (i=1; i<=n; i++)
+    {
+      if (key == a[i])
+      {
+        return i;
+      }
+    }
+    return 0;
+  }
+  ```
 
