@@ -581,7 +581,7 @@
 
 + 顺序表查找
 
-  1. 顺序查找又称线性查找。
+  1. 顺序查找又称线性查找
 
   ``` java
   int Sequential_Search(int[] a, int n, int key)
@@ -597,4 +597,24 @@
     return 0;
   }
   ```
+
+  2. 顺序表查找优化
+
+  ``` java
+  int Sequential_Search2(int[] a, int n, int key)
+  {
+    int i;
+    a[0] = key;
+    i = n;
+    while (a[i] != key)
+    {
+      i--;
+    }
+    return i; // 返回 0 则查找失败
+  }
+  ```
+
++ 有序表查找
+
+1. 折半查找（Binary Search），又称二分查找
 
