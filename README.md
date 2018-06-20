@@ -616,5 +616,6 @@
 
 + 有序表查找
 
-1. 折半查找（Binary Search），又称二分查找
+1. 折半查找（Binary Search）又称二分查找
+
 
