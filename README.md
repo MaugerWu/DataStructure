@@ -620,3 +620,31 @@
 
   &emsp;&emsp;前提是线性表中的记录必须是关键码有序，线性表必须采用顺序存储。
 
+  ```java
+  public int Binary_Search(int[] arr, int key)
+  {
+      int low = 0;
+      int high = arr.length - 1;
+      int mid;
+
+      while (low <= high)
+      {
+          mid = (low + high) / 2;
+          if (key < arr[mid])
+          {
+              high = mid - 1;
+          } else if (key > arr[mid])
+          {
+              low = mid + 1;
+          } else
+          {
+              return mid;
+          }
+      }
+
+      return -1; // 表中不存在 key
+  }
+  ```
+
+  2. 插值查找
+
