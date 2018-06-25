@@ -648,7 +648,10 @@
 
   2. 插值查找
 
-  &emsp;&emsp;插值查找是由折半查找优化得到
+  &emsp;&emsp;插值查找是根据折半查找（二分查找）来优化，由折半查找中代码 mid=(low+high)/2;
+  变换后得到：mid=low+(high-low)/2;
+  改进后为：
+  low + (high - low) * (key - arr[low]) / (arr[high] - arr[low]);
 
   ```java
   public int Interpolation_Search(int[] arr, int key)
