@@ -598,7 +598,7 @@
   }
   ```
 
-  2. 顺序表查找优化
+  2. 顺序表查找优化（优化每次循环时都需要对 i 是否越界，即是否小于等于 n 做判断）
 
   ``` java
   int Sequential_Search2(int[] a, int n, int key)
