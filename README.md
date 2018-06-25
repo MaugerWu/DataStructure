@@ -648,3 +648,30 @@
 
   2. 插值查找
 
+  &emsp;&emsp;插值查找是由折半查找优化得到
+
+  ```java
+  public int Interpolation_Search(int[] arr, int key)
+  {
+    int low = 0;
+    int high = arr.length - 1;
+    int mid;
+
+    while (low <= high)
+    {
+      mid = low + (high - low) * (key - arr[low]) / (arr[high] - arr[low]); // 优化的部分
+      if (key < arr[mid])
+      {
+        high = mid - 1;
+      } else if (key > arr[mid])
+      {
+        low = mid + 1;
+      } else
+      {
+        return mid;
+      }
+    }
+    return -1; // 表中不存在 key
+  }
+  ```
+
