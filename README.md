@@ -695,3 +695,84 @@
 
     &emsp;&emsp;还有关键一点，折半查找是进行加法与除法运算的（mid=(low+high)/2），插值查找则进行更复杂的四则运算（mid = low + (high - low) * ((key - a[low]) / (a[high] - a[low]))），而斐波那契查找只进行最简单的加减法运算（mid = low + F[k-1] - 1），在海量数据的查找过程中，这种细微的差别可能会影响最终的效率。
 
+  ```java
+  public class FibonacciSearch
+  {
+    /** 斐波那契数列长度 */
+    private static final int MAX_SIZE = 20;
+
+    /**
+     * 斐波那契查找
+     * @param arr 顺序表有序数列
+     * @param key 将要查找的数
+     * @return
+     */
+    public static int Fibonacci_Search(int[] arr, int key)
+    {
+      int len = arr.length;
+      if (arr == null || len == 0)
+      {
+        return -1;
+      }
+
+      int low = 0;
+      int high = len - 1;
+      int k = 0;
+      int[] fb = new int[MAX_SIZE];
+      createFibonacci(fb);
+      while (len > fb[k] - 1)
+      {
+        k++;
+      }
+
+      int[] temp = Arrays.copyOf(arr, fb[k] - 1); // 构造一个长度为 F[k] - 1 的新数列
+      for (int i = len; i < fb[k] - 1; i++)
+      {
+        temp[i] = arr[high];
+      }
+
+      while (low <= high)
+      {
+        int mid = low + fb[k - 1] - 1;
+        if (key < temp[mid])
+        {
+          high = mid - 1;
+          k = k - 1;
+        } else if (key > temp[mid])
+        {
+          low = mid + 1;
+          k = k - 2;
+        } else
+        {
+          if (mid <= high)
+          {
+            return mid;
+          } else
+          {
+            return high;
+          }
+        }
+      }
+
+      return -1;
+    }
+
+    private static void createFibonacci(int[] fb)
+    {
+      int len = fb.length;
+      fb[0] = 1;
+      fb[1] = 1;
+      for (int i = 2; i < len; i++)
+      {
+        fb[i] = fb[i - 1] + fb[i - 2];
+      }
+    }
+
+    public static void main(String[] args)
+    {
+      int[] arr = { 0, 11, 22, 33, 54, 65, 76, 88, 98, 119, 1110 };
+      System.out.println(FibonacciSearch.Fibonacci_Search(arr, 88));
+    }
+  }
+  ```
+
