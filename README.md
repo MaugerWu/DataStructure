@@ -786,4 +786,15 @@
 
 2. 分块索引
 
+&emsp;&emsp;分块有序，是把数据集的记录分成了若干块，并且这些块需要满足两个条件：
+
+1）块内无序； 2）块间有序
+
+&emsp;&emsp;对于分块有序的数据集，将每块对应一个索引项，这种索引方法称为分块索引。（最大关键码|块长|块首指针）
+
+3. 倒排索引
+
+&emsp;&emsp;Books and friends should be few but good.
+
+&emsp;&emsp;A good book is a good friend.
 
