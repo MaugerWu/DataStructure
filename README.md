@@ -820,7 +820,65 @@
   
   - 二叉排序树的遍历
   
+   ```java
+      /**
+       * 递归实现前序遍历
+       * 前序遍历：访问根，按先序遍历左子树，按先序遍历右子树
+       */
+      static void preOrder(Node p) {
+          if (p != null) {
+              visit(p);
+              preOrder(p.getLeft());
+              preOrder(p.getRight());
+          }
+      }
 
+      /**
+       * 递归实现中序遍历
+       * 中序遍历：按中序遍历左子树，访问根，按中序遍历右子树
+       */
+      static void inOrder(Node p) {
+          if (p != null) {
+              inOrder(p.getLeft());
+              visit(p);
+              inOrder(p.getRight());
+          }
+      }
+
+      /**
+       * 递归实现后序遍历
+       * 后序遍历：按后序遍历左子树，按后序遍历右子树，访问根
+       */
+      static void postOrder(Node p) {
+          if (p != null) {
+              postOrder(p.getLeft());
+              postOrder(p.getRight());
+              visit(p);
+          }
+      }
+
+      /**
+       * 层次遍历
+       * 通常用队列来做。先访问根节点，访问子女，再访问子女的子女（越往后的层次越低）（两个子女的级别相同）
+       */
+      static void levelOrder(Node p) {
+          if (p == null) {
+            return;
+          }
+          Queue<Node> queue = new LinkedList<Node>();
+          queue.offer(p);
+          while (queue.size() > 0) {
+              Node temp = queue.poll();
+              visit(temp);
+              if (temp.getLeft() != null) {
+                  queue.offer(temp.getLeft());
+              }
+              if (temp.getRight() != null) {
+                  queue.offer(temp.getRight());
+              }
+          }
+      }
+  ```
 
 + 平衡二叉树（AVL 树）
 
