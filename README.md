@@ -882,3 +882,6 @@
 
 + 平衡二叉树（AVL 树）
 
+&emsp;&emsp;平衡二叉树（Self-Balancing Binary Search Tree 或 Height-Balancing Binary Search Tree），是一种二叉排序树，其中每一个节点的左子树和右子树的高度差至多等于1。
+
+
