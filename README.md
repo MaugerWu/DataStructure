@@ -888,17 +888,44 @@
 
 &emsp;&emsp;AVL 树只是实现平衡二叉树的一种方法，它还有很多的其他实现方法如`红黑树`、`替罪羊树`、`Treap`、`伸展树`等。
 
-+ 二叉排序树结点结构
+  + 二叉排序树结点结构
 
-```c++
-/* 二叉树的二叉链表结点结构定义 */
-typedef struct BitNode /* 结点结构 */
-{
-  int data; /* 结点数据 */
-  int bf; /* 结点的平衡因子 */
-  struct BitNode *lchild, *rchild; /* 左右孩子指针 */
-}
-```
+  ```c++
+  /* 二叉树的二叉链表结点结构定义 */
+  typedef struct BitNode /* 结点结构 */
+  {
+    int data; /* 结点数据 */
+    int bf; /* 结点的平衡因子 */
+    struct BitNode *lchild, *rchild; /* 左右孩子指针 */
+  }
+  ```
 
+  + 右旋操作
+
+  ```c++
+  /* 对以 P 为根的二叉排序树作右旋处理 */
+  void R_Rotate(BiTree *P)
+  {
+    BiTree L;
+    L = (*P) -> lchild; /* L 指向 P 的左子树根结点 */
+    (*P) -> lchild = L -> rchild; /* L 的右子树挂接为 P 的左子树 */
+    L -> rchild = (*P); 
+    *P = L; /* P 指向新的根结点 */
+  }
+  ```
+
+  + 左旋操作
+
+  ```c++
+  /* 对以 P 为根的二叉排序树作左旋处理 */
+  void L_Rotate(BiTree *P)
+  {
+    BiTree R;
+    R = (*P) -> rchild; /* L 指向 P 的右子树根结点 */
+    (*P) -> rchild = L -> lchild; /* L 的左子树挂接为 P 的右子树 */
+    L -> lchild = (*P); 
+    *P = R; /* P 指向新的根结点 */
+  }
+  ```
 
 
