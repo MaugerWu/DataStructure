@@ -884,4 +884,8 @@
 
 &emsp;&emsp;平衡二叉树（Self-Balancing Binary Search Tree 或 Height-Balancing Binary Search Tree），是一种二叉排序树，其中每一个节点的左子树和右子树的高度差至多等于1。（两位俄罗斯数学家 G.MAdelson-Velskii 和 E.M.Landis 在 1962 年共同发明一种解决平衡二叉树的算法，也称 AVL 树。）
 
+&emsp;&emsp;一棵 AVL 树是其每个结点的左子树和右子树的高度最多相差 1 的二叉查找树(空树的高度为 -1)，这个差值也称为平衡因子（其取值可以是1，0，-1，平衡因子是某个结点左右子树层数的差值）。
+
+&emsp;&emsp;AVL 树只是实现平衡二叉树的一种方法，它还有很多的其他实现方法如`红黑树`、`替罪羊树`、`Treap`、`伸展树`等。
+
 
