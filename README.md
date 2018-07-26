@@ -888,4 +888,17 @@
 
 &emsp;&emsp;AVL 树只是实现平衡二叉树的一种方法，它还有很多的其他实现方法如`红黑树`、`替罪羊树`、`Treap`、`伸展树`等。
 
++ 二叉排序树结点结构
+
+```c++
+/* 二叉树的二叉链表结点结构定义 */
+typedef struct BitNode /* 结点结构 */
+{
+  int data; /* 结点数据 */
+  int bf; /* 结点的平衡因子 */
+  struct BitNode *lchild, *rchild; /* 左右孩子指针 */
+}
+```
+
+
 
