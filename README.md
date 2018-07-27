@@ -945,4 +945,40 @@
   }
   ```
 
+  + 左平衡旋转处理函数
+
+  ```c++
+  void leftBalance(BiTree *T)
+  {
+    BiTree L, Lr;
+    L = (*T) -> lchild; /* L 指向 T 的左子树根结点 */
+    switch(L -> bf)
+    {
+      /* 检查 T 的左子树的平衡度，并作相应平衡处理 */
+      case LH:
+        (*T) -> bf = L -> EH;
+        R_Rotate(T);
+        break;
+      case RH:
+        Lr = L -> rchild;
+        switch(Lr -> bf)
+        {
+          case LH:
+            (*T) -> bf = RH;
+            L -> bf = EH;
+            break;
+          case EH:
+            (*T) -> bf = L -> bf = EH;
+            break;
+          case RH:
+            (*T) -> bf = EH;
+            L -> bf = LH;
+            break;
+        }
+        Lr -> bf = EH;
+        L_Rotate(&(*T) -> lchild);
+        R_Rotate(T);
+    }
+  }
+  ```
 
