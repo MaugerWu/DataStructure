@@ -912,7 +912,7 @@
   typedef struct BitNode /* 结点结构 */
   {
     int data; /* 结点数据 */
-    int bf; /* 结点的平衡因子 */
+    int bf; /* 结点的平衡因子 -1、0、1 */
     struct BitNode *lchild, *rchild; /* 左右孩子指针 */
   }
   ```
@@ -982,5 +982,79 @@
   }
   ```
   
-  + 插入
+  + 主函数
+
+  ```c++
+  Status InsertAVL(BiTree *T, int e, Status *taller) /* 待插入数据元素 e, taller 反映 T 长高与否 */
+  {
+    if(!*T)
+    {
+      /* 插入新结点，树“长高”，置 taller 为 TRUE */
+      /* malloc() 为一个对象在堆中分配一个 sizeof(BiTNode) 大小的内存空间,并且返回一个指向这块内存的指针；free() 为释放内存。 */
+      *T = (BiTree)malloc(sizeof(BiTNode));
+      (*T) -> data = e;
+      (*T) -> lchild = (*T) -> rchild = NULL;
+      (*T) -> br = EH;
+      *taller = TRUE;
+    }
+    else
+    {
+      if(e == (*T) -> data) /* 树中已存在和 e 有相同关键字的结点则不再插入 */
+      {
+        *taller = FALSE;
+        return FALSE;
+      }
+      if(e < (*T) -> data) /* 应继续在 T 的左子树中进行搜索 */
+      {
+        if(!InsertAVL(&(*T) -> lchild, e, taller)) /* 未插入 */
+        {
+          return FALSE;
+        }
+        if(*taller) /* 已插入到 T 的左子树中且左子树“长高” */
+        {
+          switch((*T) ->bf) /* 检查 T 的平衡度 */
+          {
+            case LH: /* 原本左子树比右子树高，需要作左平衡处理 */
+              LeftBalance(T);
+              *taller = FALSE;
+              break;
+            case EH: /* 原本左右子树等高，现因左子树增高而树增高 */
+              (*T) -> bf = LH;
+              *taller = TRUE;
+              break;
+            case RH: /* 原本右子树比左子树高，现左右子树等高 */
+              (*T) -> bf = EH;
+              *taller = FALSE;
+              break;
+          }
+        }
+      }
+      else /* 应继续在 T 的右子树中进行搜索 */
+      {
+        if(!InsertAVL(&(*T) -> rchild, e, taller)) /* 未插入 */
+        {
+          return FALSE;
+        }
+        if(*taller) /* 已插入到 T 的右子树中且左子树“长高” */
+        {
+          switch((*T) ->bf) /* 检查 T 的平衡度 */
+          {
+            case LH: /* 原本左子树比右子树高，现左右子树等高 */
+              (*T) -> bf = EH;
+              *taller = FALSE;
+              break;
+            case EH: /* 原本左右子树等高，现因右子树增高而树增高 */
+              (*T) -> bf = RH;
+              *taller = TRUE;
+              break;
+            case RH: /* 原本右子树比左子树高，需要作右平衡处理 */
+              RightBalance(T);
+              *taller = FALSE;
+              break;
+          }
+      }
+    }
+    return TRUE;
+  }
+  ```
 
