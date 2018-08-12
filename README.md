@@ -1187,7 +1187,7 @@
     
     2. 再散列函数法
     
-    &emsp;&emsp;
+    &emsp;&emsp;f_i(key) = RH_i(key)（i = 1,2,3...,k）
     
     3. 链地址法
     
