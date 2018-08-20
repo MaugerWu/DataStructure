@@ -1288,6 +1288,71 @@
 
 &emsp;&emsp;冒泡排序（Bubble Sort）一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，直到没有反序的记录为止。
 
+```java
+// 最简单的实现
+public void bubbleSort1(int[] arr)
+{
+  for (int i = 0; i < arr.length; i++)
+  {
+    for (int j = i + 1; j < arr.length; j++)
+    {
+      if (arr[i] > arr[j])
+      {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+}
+```
+
+```java
+// 优化比较的次数
+public void bubbleSort2(int[] arr)
+{
+  for (int i = 0; i < arr.length; i++)
+  {
+    for (int j = 0; j < arr.length - 1 - i; j++)
+    {
+      if (arr[j] > arr[j + 1])
+      {
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+}
+```
+
+```java
+// 优化比较的次数和趟数
+public void bubbleSort3(int[] arr)
+{
+  int len = arr.length;
+  boolean sorted = true;
+  for (int i = 0; i < len - 1; i++) 
+  {
+    sorted = true;
+    for (int j = 0; j < len - 1 - i; j++) 
+    {
+      if (arr[j] > arr[j+1]) 
+      {
+        int temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+        sorted = false;
+      }
+    }
+    if (sorted) 
+    {
+      break;
+    }
+  }
+}
+```
+
 
 + 简单选择排序
 
