@@ -1288,6 +1288,10 @@
 
 &emsp;&emsp;冒泡排序（Bubble Sort）一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，直到没有反序的记录为止。
 
+&emsp;&emsp;（1）最好的情况，也就是要排序的表本身就是有序的，进行了 n-1 次的比较，没有数据交换，时间复杂度为 O(n)。
+
+&emsp;&emsp;（2）最坏的情况，即待排序表为逆序，此时需要比较 Sum = 1+2+3+...+（n-1）= n(n-1)/2 次，并作等数量级的记录移动。总的时间复杂度为 O(n^2)。
+
 ```java
 // 最简单的实现
 public void bubbleSort1(int[] arr)
@@ -1327,15 +1331,15 @@ public void bubbleSort2(int[] arr)
 ```
 
 ```java
-// 优化比较的次数和趟数
+// 优化比较的次数和趟数，若此序列已经有序，则停止后续比较
 public void bubbleSort3(int[] arr)
 {
   int len = arr.length;
   boolean sorted = true;
-  for (int i = 0; i < len - 1; i++) 
+  for (int i = 0; i < len-1; i++) 
   {
     sorted = true;
-    for (int j = 0; j < len - 1 - i; j++) 
+    for (int j = 0; j < len-1-i; j++) 
     {
       if (arr[j] > arr[j+1]) 
       {
