@@ -1292,6 +1292,10 @@
 
 &emsp;&emsp;（2）最坏的情况，即待排序表为逆序，此时需要比较 Sum = 1+2+3+...+（n-1）= n(n-1)/2 次，并作等数量级的记录移动。总的时间复杂度为 O(n^2)。
 
+&emsp;&emsp;空间复杂度：O(1)。
+
+&emsp;&emsp;算法稳定性：稳定。
+
 ```java
 // 最简单的实现
 public void bubbleSort1(int[] arr)
@@ -1359,4 +1363,41 @@ public void bubbleSort3(int[] arr)
 
 
 + 简单选择排序
+
+&emsp;&emsp;简单选择排序 (Simple Selection Sort)：通过 n-i 次关键字间的比较，从 n-i+1 个记录中选出最小关键字的记录，并和第 i（1 <= i <= n）个记录交换。基于最终的排序时间是比较与交换的次数总和，尽管与冒泡排序同为 O(n^2)，但简单选择排序在性能上略优于冒泡排序。
+
+&emsp;&emsp;时间复杂度: 最好/最坏/平均 均为 O(n^2)。
+
+&emsp;&emsp;空间复杂度：O(1)。
+
+&emsp;&emsp;算法稳定性：不稳定。
+
+&emsp;&emsp;不稳定发生在最小元素与A[i]交换的时刻。比如序列：{ 5, 8, 5, 2, 9 }，第一次选择的最小元素是 2，然后把 2 和第一个 5 进行交换，从而改变了两个元素 5 的相对次序。
+
+```java
+public void simpleSelectSort(int[] arr)
+{
+  int min = 0; // 记录最小关键字的位置
+  for (int i = 0; i < arr.length - 1; i++)
+  {
+    min = i;
+    for (int j = i + 1; j < arr.length; j++)
+    {
+      if (arr[min] > arr[j]) // 寻找出最小关键字的位置
+      {
+        min = j;
+      }
+    }
+
+    if (i != min)
+    {
+      int temp = arr[min];
+      arr[min] = arr[i];
+      arr[i] = temp;
+    }
+  }
+}
+```
+
++ 直接插入排序
 
