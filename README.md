@@ -1370,7 +1370,7 @@ public void bubbleSort3(int[] arr)
 
 &emsp;&emsp;简单选择排序 (Simple Selection Sort)：通过 n-i 次关键字间的比较，从 n-i+1 个记录中选出最小关键字的记录，并和第 i（1 <= i <= n）个记录交换。Sum = n-1+n-2+n-3+...+1 = n(n-1)/2 次，基于最终的排序时间是比较与交换的次数总和，尽管与冒泡排序同为 O(n^2)，但简单选择排序在性能上略优于冒泡排序。
 
-&emsp;&emsp;时间复杂度: 最好/最坏/平均 均为 O(n^2)。
+&emsp;&emsp;时间复杂度: 最好/最坏/平均情况的时间复杂度均为 O(n^2)。
 
 &emsp;&emsp;空间复杂度：O(1)。
 
@@ -1417,10 +1417,25 @@ public void simpleSelectSort(int[] arr)
 
 &emsp;&emsp;空间复杂度：O(1)。
 
-&emsp;&emsp;算法稳定性：不稳定。
+&emsp;&emsp;算法稳定性：稳定。
 
 ```java
-
+public void insertionSort(int[] arr)
+{
+  int i, j;
+  for (i = 1; i < arr.length; i++)
+  {
+    if (arr[i] < arr[i - 1])
+    {
+      int temp = arr[i]; // 设置哨兵，抓牌
+      for (j = i - 1; arr[j] > temp; j--)
+      {
+        arr[j + 1] = arr[j]; // 记录后移
+      }
+      arr[j + 1] = temp; // 插入到正确的位置
+    }
+  }
+}
 ```
 
 + 希尔排序
@@ -1429,7 +1444,7 @@ public void simpleSelectSort(int[] arr)
 
 &emsp;&emsp;需要注意的是，增量序列的最后一个增量值必须等于 1 才行。由于记录是跳跃式的移动，希尔排序并不是一种稳定的排序算法。
 
-&emsp;&emsp;时间复杂度: O（n^(3/2)），要好于直接排序的 O（n^2）。
+&emsp;&emsp;最优时间复杂度 O(n)，平均时间复杂度: O（nlogn） ~ O（n^2），要好于直接排序的 O（n^2）。
 
 &emsp;&emsp;空间复杂度：O(1)。
 
