@@ -1420,3 +1420,7 @@ public void simpleSelectSort(int[] arr)
 &emsp;&emsp;算法稳定性：不稳定。
 
 
++ 希尔排序
+
+&emsp;&emsp;希尔排序（Shell Sort）是 D.L.Shell 于 1959 年提出来的一种排序算法。
+
