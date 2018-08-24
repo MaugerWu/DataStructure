@@ -1453,7 +1453,27 @@ public void insertionSort(int[] arr)
 &emsp;&emsp;希尔排序是不稳定的排序算法，虽然一次插入排序是稳定的，不会改变相同元素的相对顺序，但在不同的插入排序过程中，相同的元素可能在各自的插入排序中移动，最后其稳定性就会被打乱。比如序列：{ 3, 5, 10, 8, 7, 2, 8, 1, 20, 6 }，h=2 时分成两个子序列 { 3, 10, 7, 8, 20 } 和  { 5, 8, 2, 1, 6 } ，未排序之前第二个子序列中的8在前面，现在对两个子序列进行插入排序，得到 { 3, 7, 8, 10, 20 } 和 { 1, 2, 5, 6, 8 } ，即 { 3, 1, 7, 2, 8, 5, 10, 6, 20, 8 } ，两个 8 的相对次序发生了改变。
 
 ```java
-
+public void shellSort(int[] arr)
+	{
+		int i, j;
+		int increment = arr.length;
+		do
+		{
+			increment = increment / 3 + 1; // 增量序列
+			for (i = increment; i < arr.length; i++)
+			{
+				j = i - increment;
+				int temp = arr[i];
+				while (j >= 0 && arr[j] > temp)
+				{
+					arr[j + increment] = arr[j];
+					j = j - increment;
+				}
+				arr[j + increment] = temp;
+			}
+		}
+		while(increment > 1);
+	}
 ```
 
 
