@@ -1454,26 +1454,26 @@ public void insertionSort(int[] arr)
 
 ```java
 public void shellSort(int[] arr)
+{
+	int i, j;
+	int increment = arr.length;
+	do
 	{
-		int i, j;
-		int increment = arr.length;
-		do
+		increment = increment / 3 + 1; // 增量序列
+		for (i = increment; i < arr.length; i++)
 		{
-			increment = increment / 3 + 1; // 增量序列
-			for (i = increment; i < arr.length; i++)
+			j = i - increment;
+			int temp = arr[i];
+			while (j >= 0 && arr[j] > temp)
 			{
-				j = i - increment;
-				int temp = arr[i];
-				while (j >= 0 && arr[j] > temp)
-				{
-					arr[j + increment] = arr[j];
-					j = j - increment;
-				}
-				arr[j + increment] = temp;
+				arr[j + increment] = arr[j];
+				j = j - increment;
 			}
+			arr[j + increment] = temp;
 		}
-		while(increment > 1);
 	}
+	while(increment > 1);
+}
 ```
 
 
