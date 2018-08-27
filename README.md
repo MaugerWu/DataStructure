@@ -1269,7 +1269,7 @@
 |希尔排序|O(nlogn~O(n^2))|O(n^1.3)|O(n^2)|O(1)|不稳定|
 |堆排序|O(nlogn)|O(nlogn)|O(nlogn)|O(1)|不稳定|
 |归并排序|O(nlogn)|O(nlogn)|O(nlogn)|O(n)|稳定|
-|快读排序|O(nlogn)|O(nlogn)|O(n^2)|O(logn)~O(n)|不稳定|
+|快速排序|O(nlogn)|O(nlogn)|O(n^2)|O(logn)~O(n)|不稳定|
 
 + 内排序与外排序
 
