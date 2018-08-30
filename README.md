@@ -1524,11 +1524,10 @@ public void shellSort(int[] arr)
 
 ```java
 /* 归并排序的递归实现 */
-public static String mergeSort(int[] arr)
+public static void mergeSort(int[] arr)
 {
-// Arrays.sort(arr);
+	// Arrays.sort(arr);
 	MSort(arr, 0, arr.length - 1);
-	return Arrays.toString(arr);
 }
 
 private static void MSort(int[] arr, int left, int right)
@@ -1596,6 +1595,48 @@ private static void MSort(int[] arr, int left, int mid, int right)
 &emsp;&emsp;空间复杂度：最好情况为 O(nlogn)、最坏情况为 O(n)、平均情况为 O(nlogn)。
 
 &emsp;&emsp;稳定性：不稳定。由于关键字的比较和交换是跳跃式进行的。
+
+```java
+public void QSort(LinkedList<Integer> list)
+{
+	quickSort(list, 0, list.size() - 1);
+}
+
+private void quickSort(LinkedList<Integer> list, int left, int right)
+{
+	if (left > right)
+	{
+		return;
+	}
+	int i = left;
+	int j = right;
+	int temp = list.get(left);
+	while (i != j)
+	{
+		while (list.get(j) >= temp && j > i)
+		{
+			j--;
+		}
+		if (j > i)
+		{
+			list.set(i++, list.get(j));
+		}
+
+		while (list.get(i) <= temp && j > i)
+		{
+			i++;
+		}
+		if (j > i)
+		{
+			list.set(j--, list.get(i));
+		}
+	}
+
+	list.set(i, temp);
+	quickSort(list, left, i - 1);
+	quickSort(list, i + 1, right);
+}
+```
 
 
 + 基数排序
