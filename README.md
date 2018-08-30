@@ -1522,6 +1522,68 @@ public void shellSort(int[] arr)
 
 &emsp;&emsp;归并排序是一种比较占用内存，但却效率高且稳定的排序算法。
 
+```java
+/* 归并排序的递归实现 */
+public static String mergeSort(int[] arr)
+{
+// Arrays.sort(arr);
+	MSort(arr, 0, arr.length - 1);
+	return Arrays.toString(arr);
+}
+
+private static void MSort(int[] arr, int left, int right)
+{
+	if (left >= right)
+	{
+		return;
+	}
+	int mid = (left + right) / 2;
+	MSort(arr, left, mid); // 对左边十足进行递归
+	MSort(arr, mid + 1, right); // 对右边十足进行递归
+	MSort(arr, left, mid, right); // 合并
+}
+
+/**
+ * 归并排好序的数组（2路归并）
+ * @param arr 待排序数组
+ * @param left 左边数组第一个索引
+ * @param mid 左边数组最后一个索引
+ * @param right 右边数组最后一个索引
+ */
+private static void MSort(int[] arr, int left, int mid, int right)
+{
+	int[] tempArray = new int[arr.length];
+	int rightIndex = mid + 1;
+	int tempIndex = left;
+	int begin = left;
+	while (left <= mid && rightIndex <= right)
+	{
+		if (arr[left] <= arr[rightIndex])
+		{
+			tempArray[tempIndex++] = arr[left++];
+		} else
+		{
+			tempArray[tempIndex++] = arr[rightIndex++];
+		}
+	}
+
+	while (left <= mid)
+	{
+		tempArray[tempIndex++] = arr[left++];
+	}
+
+	while (rightIndex <= right)
+	{
+		tempArray[tempIndex++] = arr[rightIndex++];
+	}
+
+	while (begin <= right)
+	{
+		arr[begin] = tempArray[begin++];
+	}
+}
+```
+
 
 + 快速排序
 
