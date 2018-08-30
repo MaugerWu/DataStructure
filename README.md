@@ -1583,6 +1583,13 @@ private static void MSort(int[] arr, int left, int mid, int right)
 }
 ```
 
+&emsp;&emsp;归并排序虽然看上去稳定而且时间复杂度不高，但是在实际应用中，开辟大块的额外空间并且将两个数组的元素来回复制却是很耗时，所以归并排序一般不用于内部排序。但它是进行外部排序非常有用的工具。将递归转化为迭代之后，性能上进一步提高了，Talk is cheap, show me the code.
+
+```java
+/* 归并排序的非递归（迭代）实现 */
+
+```
+
 
 + 快速排序
 
