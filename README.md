@@ -1587,9 +1587,69 @@ private static void MSort(int[] arr, int left, int mid, int right)
 
 ```java
 /* 归并排序的非递归（迭代）实现 */
+public void mergeSort(int[] arr)
+{
+	int n = arr.length;
+	int k = 1;
+	while (k < n)
+	{
+		mergePass(arr, k, n);
+		k *= 2;
+	}
+}
 
+private void mergePass(int[] arr, int k, int n)
+{
+	int i = 0;
+	while (i < n-2*k+1)
+	{
+		merge(arr, i, i+k-1, i+2*k-1); // 两两归并
+		i += 2*k; //i = i + 2 * k;
+	}
+
+	// 看护那些“落单的”长度不足两两归并的部分和前面归并起来
+	if (i < n-k)
+	{
+		merge(arr, i, i+k-1, n-1); // 归并最后两个序列
+	}
+}
+
+private static void merge(int[] arr, int low, int mid, int high)
+{
+	int[] temp = new int[high - low + 1]; // 暂存合并结果
+	int i = low; // 左边数组指针
+	int j = mid + 1; // 右边数组指针
+	int k = 0; // 合并后数组的指针
+
+	for (; i <= mid && j <= high; k++)
+	{
+		if (arr[i] < arr[j])
+		{
+			temp[k] = arr[i++];
+		} else
+		{
+			temp[k] = arr[j++];
+		}
+	}
+
+	// 两个 while 循环是为了将剩余的（比另一边多出来的个数）放到 temp 数组中
+	while (i <= mid)
+	{
+		temp[k++] = arr[i++];
+	}
+
+	while (j <= high)
+	{
+		temp[k++] = arr[j++];
+	}
+
+	//将 temp 数组中的元素写入到待排数组中
+	for (int l=0; l < temp.length; l++)
+	{
+		arr[low + l] = temp[l];
+	}
+}
 ```
-
 
 + 快速排序
 
