@@ -1648,6 +1648,56 @@ private void quickSort(LinkedList<Integer> list, int left, int right)
 
 + 计数数排序
 
+&emsp;&emsp;计数排序是一个非基于比较的排序算法，该算法于 1954 年由 Harold H. Seward 提出，它的优势在于在对于较小范围内的整数排序。它的复杂度为 Ο(n+k)（其中 k 是待排序数的范围），快于任何比较排序算法，缺点就是非常消耗空间。很明显，如果而且当 O(k) > O(nlogn) 的时候其效率反而不如基于比较的排序，比如堆排序和归并排序和快速排序。
+
+&emsp;&emsp;算法步骤：
+
+	1. 找出待排序的数组中最大的元素；
+	2. 统计数组中每个值为i的元素出现的次数，存入数组C的第i项； 
+	3. 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）； 
+	4. 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1。
+
+&emsp;&emsp;时间复杂度：Ο(n+k)。
+
+&emsp;&emsp;空间复杂度：Ο(k)。
+
+&emsp;&emsp;要求：待排序数中最大数值不能太大。
+
+&emsp;&emsp;稳定性：稳定。
+
+```c++
+#define MAXNUM 20    //待排序数的最大个数
+#define MAX    100   //待排序数的最大值
+int sorted_arr[MAXNUM]={0};
+ 
+//计算排序
+//arr:待排序数组，sorted_arr：排好序的数组，n：待排序数组长度
+void countSort(int *arr, int *sorted_arr, int n)  
+{   
+    int i;   
+    int *count_arr = (int *)malloc(sizeof(int) * (MAX+1));  
+ 
+    //初始化计数数组   
+    memset(count_arr,0,sizeof(int) * (MAX+1));
+ 
+    //统计i的次数   
+    for(i = 0;i<n;i++)  
+        count_arr[arr[i]]++;  
+    //对所有的计数累加，作用是统计arr数组值和小于小于arr数组值出现的个数
+    for(i = 1; i<=MAX; i++)  
+        count_arr[i] += count_arr[i-1];   
+    //逆向遍历源数组（保证稳定性），根据计数数组中对应的值填充到新的数组中   
+    for(i = n-1; i>=0; i--)  
+    {  
+        //count_arr[arr[i]]表示arr数组中包括arr[i]和小于arr[i]的总数
+        sorted_arr[count_arr[arr[i]]-1] = arr[i];  
+ 
+        //如果arr数组中有相同的数，arr[i]的下标减一
+        count_arr[arr[i]]--;    
+    }
+    free(count_arr);
+}
+```
 
 + 基数排序
 
