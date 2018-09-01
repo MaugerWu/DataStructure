@@ -1704,4 +1704,84 @@ void countSort(int *arr, int *sorted_arr, int n)
 
 + 桶排序
 
+&emsp;&emsp;桶排序也是分配排序的一种，但其是基于比较排序的，这也是与基数排序最大的区别所在。
+
+&emsp;&emsp;思想：桶排序算法想法类似于散列表。首先要假设待排序的元素输入符合某种均匀分布，例如数据均匀分布在 \[ 0, 1) 区间上，则可将此区间划分为10个小区间，称为桶，对散布到同一个桶中的元素再排序。
+
+&emsp;&emsp;要求：待排序数长度一致。
+
+&emsp;&emsp;排序过程： 
+
+	1. 设置一个定量的数组当作空桶子； 
+	2. 寻访序列，并且把记录一个一个放到对应的桶子去； 
+	3. 对每个不是空的桶子进行排序。 
+	4. 从不是空的桶子里把项目再放回原来的序列中。
+
+&emsp;&emsp;例如待排序列 K = {49, 38, 35, 97, 76, 73, 27, 49 }。这些数据全部在1—100之间。因此我们定制10个桶，然后确定映射函数 f(k) = k/10。则第一个关键字 49 将定位到第 4 个桶中 (49/10 = 4)。依次将所有关键字全部堆入桶中，并在每个非空的桶中进行快速排序。
+
+&emsp;&emsp;时间复杂度： 
+
+&emsp;&emsp;对N个关键字进行桶排序的时间复杂度分为两个部分： 
+
+	1. 循环计算每个关键字的桶映射函数，这个时间复杂度是O(N)。
+	2.利用先进的比较排序算法对每个桶内的所有数据进行排序，对于N个待排数据，M 个桶，平均每个桶 \[N/M] 个数据，则桶内排序的时间复杂度为 ∑i = 1MO(Ni∗logNi) = O(N∗logNM) 。其中 Ni 为第 i 个桶的数据量。
+
+&emsp;&emsp;因此，平均时间复杂度为线性的O(N+C)，C为桶内排序所花费的时间。当每个桶只有一个数，则最好的时间复杂度为：O(N)。
+
+```c++
+typedef struct node
+ { 
+     int keyNum;//桶中数的数量
+     int key;   //存储的元素
+     struct node * next;  
+ }KeyNode;    
+ 
+ //keys待排序数组，size数组长度，bucket_size桶的数量
+ void inc_sort(int keys[],int size,int bucket_size)
+ { 
+     KeyNode* k=(KeyNode *)malloc(sizeof(KeyNode)); //用于控制打印
+     int i,j,b;
+     KeyNode **bucket_table=(KeyNode **)malloc(bucket_size*sizeof(KeyNode *)); 
+     for(i=0;i<bucket_size;i++)
+     {  
+         bucket_table[i]=(KeyNode *)malloc(sizeof(KeyNode)); 
+         bucket_table[i]->keyNum=0;//记录当前桶中是否有数据
+         bucket_table[i]->key=0;   //记录当前桶中的数据  
+         bucket_table[i]->next=NULL; 
+     }    
+ 
+     for(j=0;j<size;j++)
+     {   
+         int index;
+         KeyNode *p;
+         KeyNode *node=(KeyNode *)malloc(sizeof(KeyNode));   
+         node->key=keys[j];  
+         node->next=NULL;  
+ 
+         index=keys[j]/10;        //映射函数计算桶号  
+         p=bucket_table[index];   //初始化P成为桶中数据链表的头指针  
+         if(p->keyNum==0)//该桶中还没有数据 
+         {    
+             bucket_table[index]->next=node;    
+             (bucket_table[index]->keyNum)++;  //桶的头结点记录桶内元素各数，此处加一
+         }
+         else//该桶中已有数据 
+         {   
+             //链表结构的插入排序 
+             while(p->next!=NULL&&p->next->key<=node->key)   
+                 p=p->next;    
+             node->next=p->next;     
+             p->next=node;      
+             (bucket_table[index]->keyNum)++;   
+         }
+     }
+     //打印结果
+     for(b=0;b<bucket_size;b++)   
+         //判断条件是跳过桶的头结点，桶的下个节点为元素节点不为空
+         for(k=bucket_table[b];k->next!=NULL;k=k->next)  
+         {
+             printf("%d ",k->next->key);
+         }
+ }
+```
 
